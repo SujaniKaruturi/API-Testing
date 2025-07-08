@@ -6,13 +6,17 @@ import io.restassured.path.json.JsonPath;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import org.testng.Assert;
 
 import InputDetails.CommonFunctions_ReUsable;
 import InputDetails.Payload_Details;
 public class AddPlace_using_POST {
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{	//given : all input details
 		//When: submit the API
 		//Then: validate the response
@@ -23,7 +27,12 @@ public class AddPlace_using_POST {
 		.log().all()
 		.queryParam("key","qaclick123")
 		.header("Content-Type","application/json")
-		.body(Payload_Details.AddPlace())    //body section is seperated in another class
+		//.body(Payload_Details.AddPlace())    //body section is seperated in another class
+		//how to call statuc payload from json file
+		//1.convert content of file to byte--->then byte data to String which body method accepts
+		//using Files.readAllBytes() - reads all bytes from file and converts it into bytes format
+		//using new String object ,bytes are converting into string.
+		.body(new String(Files.readAllBytes(Paths.get("D:\\S_Selenium\\Projects\\API-Testing\\AddPlace.json"))))
 		.when()
 		.post("/maps/api/place/add/json")
 		.then()
