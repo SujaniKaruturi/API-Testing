@@ -37,9 +37,9 @@
 </dependency>
 <!-- https://mvnrepository.com/artifact/org.testng/testng -->
 <dependency>
-    <groupId>org.testng</groupId>
-    <artifactId>testng</artifactId>
-    <version>7.10.2</version>
+  <groupId>org.testng</groupId>
+  <artifactId>testng</artifactId>
+  <version>7.1.0</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
 <dependency>
