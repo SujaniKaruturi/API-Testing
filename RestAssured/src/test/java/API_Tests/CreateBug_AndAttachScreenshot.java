@@ -42,7 +42,7 @@ public class CreateBug_AndAttachScreenshot {
 		.post("rest/api/3/issue")
 		.then()
 		.log().all()
-		.assertThat()
+		.assertThat()	
 		.statusCode(201)
 		.contentType("application/json")		
 		.extract().response().asString();		 		 
