@@ -7,7 +7,7 @@ public class MainJson_POJOClass {
 	private String expertise;
 	private Courses_subJSON_POJOClass courses;   //as courses have subjson ,so using object of that class with class name will be return type.
 	private String instructor;
-	private String linkedin;
+	private String linkedIn;
 	//right click and check for source--->generate getter and setter methods
 	
 	//linked subJSON courses with Main JSON
@@ -44,11 +44,11 @@ public class MainJson_POJOClass {
 	public void setInstructor(String instructor) {
 		this.instructor = instructor;
 	}
-	public String getLinkedin() {
-		return linkedin;
+	public String getLinkedIn() {
+		return linkedIn;
 	}
-	public void setLinkedin(String linkedin) {
-		this.linkedin = linkedin;
+	public void setLinkedin(String linkedIn) {
+		this.linkedIn = linkedIn;
 	}
 	
 	

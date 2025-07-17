@@ -59,6 +59,8 @@ public class SpecBuilder_Test {
 									.expectContentType("application/json") 
 									.build(); 
 	
+	
+	
 	Response resp2=given()    //chaining all input details to given method
 			.spec(request)
 			.body(ap)

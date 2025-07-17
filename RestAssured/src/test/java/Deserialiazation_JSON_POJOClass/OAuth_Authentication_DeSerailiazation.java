@@ -21,11 +21,11 @@ public class OAuth_Authentication_DeSerailiazation {
                         .formParams("scope", "trust")
                         .when().log().all()
                         .post("https://rahulshettyacademy.com/oauthapi/oauth2/resourceOwner/token").asString();
-		System.out.println(response);
+		System.out.println("Response is"+ response);
 
 		JsonPath jsonPath = new JsonPath(response);
 		String accessToken = jsonPath.getString("access_token");
-		System.out.println(accessToken);
+		System.out.println("Access token is "+ accessToken);
 
 		String r2= given()
 					.queryParams("access_token", accessToken)
@@ -45,7 +45,7 @@ public class OAuth_Authentication_DeSerailiazation {
 		
 		
 		
-		 System.out.println(de_Serial.getLinkedin());
+		 System.out.println(de_Serial.getLinkedIn());
 		 System.out.println(de_Serial.getInstructor());
 		 System.out.println(de_Serial.getCourses().getApi().get(1).getCourseTitle());
 		 System.out.println(de_Serial.getCourses().getApi().get(1).getPrice());
@@ -63,6 +63,7 @@ public class OAuth_Authentication_DeSerailiazation {
 		
 		String coursetitles[]= {"Selenium Webdriver java", "Cypress" , "Protractor"};  //expected course lists
 		List<String> expected_courses = Arrays.asList(coursetitles);  //coverted from Array to ArrayList as its size may vary
+		System.out.println("Expected course is" + expected_courses);
 		
 		//created new arraylist to add the courses list from Json.
 		List<String> json_courses = new ArrayList<String>();
@@ -72,10 +73,12 @@ public class OAuth_Authentication_DeSerailiazation {
 		{
 			json_courses.add(api_courses.get(i).getCourseTitle());   //actual course titles
 		}
+		System.out.println("Actual course is" + json_courses);
 		
-		Assert.assertEquals(expected_courses, json_courses);
+		Assert.assertTrue(expected_courses.equals(json_courses));
 		
-		not able to output,facing UnrecodnisedPropertyException	
+		
+		//not able to output,facing UnrecodnisedPropertyException	
 	}
 
 }	

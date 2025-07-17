@@ -19,7 +19,7 @@ public class Ecommerce_E2E_flow {
 	public static void main(String[] args) throws IOException
 	{
 		
-		//SSL certification bypassing from restassured can be done using method .relaxedHTTPSValidation()
+		//SSL certification bypassing from restassured can be done using method .relaxedHTTPSValidation() which can be used after given() method
 		
 	RequestSpecification req =new RequestSpecBuilder()
 	.setBaseUri("https://rahulshettyacademy.com/")
@@ -33,21 +33,36 @@ public class Ecommerce_E2E_flow {
 	Login_response_payload_Deserialization lres=new Login_response_payload_Deserialization();
 		
 	//Login to application successfully with token and user id as response
-	Login_response_payload_Deserialization loginResponse = given()
-	.relaxedHTTPSValidation()
-	//.log().all()
-	.spec(req)
-	.body(lreq)
-	.when()
-	.post("/api/ecom/auth/login")
-	.then()
-	//.log().all()
-	.extract().response().as(Login_response_payload_Deserialization.class);
+
+	  Login_response_payload_Deserialization loginResponse2 = given() .log().all()
+	 .spec(req) 
+	 .body(lreq) 
+	 .when() 
+	 .post("/api/ecom/auth/login") 
+	 .then()
+	 .log().all()
+	 .extract().response().as(Login_response_payload_Deserialization.class);
+	  
+	  String token2=loginResponse2.getToken();
+	  System.out.println("Token value is "+ token2);
+	  
+	  String userid=loginResponse2.getUserId();
+	  System.out.println("user id value  is "+ userid);
+	 
+	/*String  loginResponse = given()
+			.log().all()
+			.spec(req)
+			.body(lreq)
+			.when()
+			.post("/api/ecom/auth/login")
+			.then()
+			.log().all()
+			.extract().response().asString();
 	//values are outputting as null ?but y
-	String token=lres.getToken();
-	String userid= lres.getUserId();
-	System.out.println(token);  
-	System.out.println(userid);
+	JsonPath js2=new JsonPath(loginResponse);
+	String token=js2.get("token");
+	System.out.println(token);
+	*/
 	
 	//Create/add a new product
 	RequestSpecification addproduct_basespec =new RequestSpecBuilder()
